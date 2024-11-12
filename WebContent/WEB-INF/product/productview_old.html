@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="/include/jsp/commonimport.jsp"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<%@include file="/include/jsp/commonhead.jsp"%>
+
+<script type="text/javascript">
+
+	$(function(){
+		$('form[name="frm"]').validate();
+	});
+
+	function dataAjax(){
+	var param = '';
+
+		$.ajax({
+			async : false,
+			data : param,
+			//dataType : 'json',
+			complete: function( xhr, textStatus ){
+				//응답처리
+			},
+			error : function( xhr, textStatus, erroThrown ){
+				alert( '처리 중 오류가 발생되었습니다. '+textStatus );
+			},
+			success : function( data, textStatus ){
+			},
+			type : 'POST',
+			url : '${cpath}/'
+		});
+	}
+
+	function dataAdd(){
+		handling.submit( '', 'productadd' );
+	}
+
+	function dataDel(){
+		handling.submit( '', 'productdel' );
+	}
+
+	function dataDown(){
+		handling.submit( '', 'productdown' );
+	}
+
+	function dataEdit(){
+		handling.submit( '', 'productedit' );
+	}
+
+	function dataIn(){
+		handling.submit( '', 'productin' );
+	}
+
+	function dataView(){
+		handling.submit( '', 'productview' );
+	}
+
+	function dataList(){
+		handling.submit( '', 'productlist' );
+	}
+
+	function dataSort(){
+		handling.submit( '', 'productlist' );
+	}
+
+	function dataUp(){
+		handling.submit( '', 'productup' );
+	}
+
+	function formSubmit( fName, r_url ){
+		handling.submit( '', r_url );
+	}
+
+	function pager( r_page ){
+		$('input[name="r_page"]').val( r_page );
+		handling.submit( '', '' );
+	}
+
+	function pageMove(  ){
+		handling.pageMove( r_url, param);
+	}
+
+</script>
+</head>
+<body>
+
+	<%@ include file="/include/jsp/header.jsp" %>
+
+	<div class="container">
+
+	<form action="productview" id="frm" name="frm" method="post" >
+
+	<input name="r_prseq" type="hidden" value="${ model.product.PR_SEQ }" />
+	<c:if test="${ !empty model.product }">
+		고유번호=<c:out value='${ model.product.PR_SEQ }' /><br/>
+		상품카테고리=<c:out value='${ model.product.PR_PRCSEQ }' /><br/>
+		상품코드=<c:out value='${ model.product.PR_CODE }' /><br/>
+		구매사상품코드=<c:out value='${ model.product.PR_CODEB }' /><br/>
+		공급사상품코드=<c:out value='${ model.product.PR_CODES }' /><br/>
+		상품명=<c:out value='${ model.product.PR_NAME }' /><br/>
+		상품가격=<c:out value='${ model.product.PR_PRICE }' /><br/>
+		파일개수=<c:out value='${ model.product.PR_FILENUM }' /><br/>
+		공급사아이디=<c:out value='${ model.product.PR_CPIDS }' /><br/>
+		구매사아이디=<c:out value='${ model.product.PR_CPIDB }' /><br/>
+		바코드=<c:out value='${ model.product.PR_BARCODE }' /><br/>
+		부가세여부=<c:out value='${ model.product.PR_VATUSE }' /><br/>
+		적립금=<c:out value='${ model.product.PR_SAVEMONEY }' /><br/>
+		규격=<c:out value='${ model.product.PR_STANDARD }' /><br/>
+		브랜드고유값=<c:out value='${ model.product.PR_BRSEQ }' /><br/>
+		모델=<c:out value='${ model.product.PR_MODEL }' /><br/>
+		단위=<c:out value='${ model.product.PR_UNIT }' /><br/>
+		제조사=<c:out value='${ model.product.PR_MANUFACTURE }' /><br/>
+		원산지=<c:out value='${ model.product.PR_COUNTRY }' /><br/>
+		최소구매수량=<c:out value='${ model.product.PR_MINBUYEA }' /><br/>
+		재고=<c:out value='${ model.product.PR_STOCK }' /><br/>
+		무게=<c:out value='${ model.product.PR_WEIGHT }' /><br/>
+		내용=<c:out value='${ model.product.PR_CONTENT }' /><br/>
+		배송소요일=<c:out value='${ model.product.PR_DELITERM }' /><br/>
+		배송정책=<c:out value='${ model.product.PR_DELIPOLICY }' /><br/>
+		상품상태=<c:out value='${ model.product.PR_STATUS }' /><br/>
+		레벨=<c:out value='${ model.product.PR_LEVEL }' /><br/>
+		타입=<c:out value='${ model.product.PR_TYPE }' /><br/>
+		사용여부=<c:out value='${ model.product.PR_USE }' /><br/>
+		수정아이디=<c:out value='${ model.product.PR_MOID }' /><br/>
+		등록아이디=<c:out value='${ model.product.PR_INID }' /><br/>
+<!--		수정일=${ fn:substring( model.product.PR_MODATE, 0, 16 ) }--><br/>
+<!--		등록일=${ fn:substring( model.product.PR_INDATE, 0, 16 ) }--><br/>
+	</c:if>
+
+		<a href="#" onclick="dataAdd(  )">등록</a>
+		<a href="#" onclick="dataEdit(  )">수정</a>
+		<a href="#" onclick="dataDel(  )">삭제</a>
+		<a href="#" onclick="dataList(  )">리스트</a>
+	</form>
+	</div>
+
+	<%@ include file="/include/jsp/footer.jsp" %>
+
+</body>
+</html>

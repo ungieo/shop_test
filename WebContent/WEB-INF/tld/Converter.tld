@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib 
+	xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+    version="2.0"
+>
+
+<tlib-version>1.2</tlib-version>
+<uri>Cvt</uri>
+	<function>
+		<name>toStr</name>
+		<function-class>system.util.Cvt</function-class>
+		<function-signature>String toStr( java.lang.Object )</function-signature>	<!-- 정상 -->
+	</function>
+	<function>
+		<name>toStrUp</name>
+		<function-class>system.util.Cvt</function-class>
+		<function-signature>String toStrUp( java.lang.Object )</function-signature>
+	</function>
+	<function>
+		<name>toStrDown</name>
+		<function-class>system.util.Cvt</function-class>
+		<function-signature>String toStrDown( java.lang.Object )</function-signature>
+	</function>
+	<function>
+		<name>toInt</name>
+		<function-class>system.util.Cvt</function-class>
+		<function-signature>String toInt( java.lang.Object )</function-signature>
+	</function>
+	<function>
+		<name>toLong</name>
+		<function-class>system.util.Cvt</function-class>
+		<function-signature>String toLong( java.lang.Object )</function-signature>
+	</function>
+	<function>
+		<name>subString</name>
+		<function-class>system.util.Cvt</function-class>
+		<function-signature>String subString( java.lang.Object, java.lang.Integer, java.lang.Integer )</function-signature>
+	</function>
+	<function>
+		<name>toChecked</name>
+		<function-class>system.util.Cvt</function-class>
+		<function-signature>String toChecked( java.lang.Boolean )</function-signature>
+	</function>
+	<function>
+		<name>toSelected</name>
+		<function-class>system.util.Cvt</function-class>
+		<function-signature>String toChecked( java.lang.Boolean )</function-signature>
+	</function>	
+	<function>
+		<name>nullToStr</name>
+		<function-class>system.util.Cvt</function-class>
+		<function-signature>String nullToStr( java.lang.Object, java.lang.String )</function-signature>
+	</function>
+	
+</taglib>

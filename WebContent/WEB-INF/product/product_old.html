@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="/include/jsp/commonimport.jsp"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<%@include file="/include/jsp/commonhead.jsp"%>
+
+<script type="text/javascript">
+
+	$(function(){
+		$('form[name="frm"]').validate();
+	});
+
+	function dataAjax(){
+	var param = '';
+
+		$.ajax({
+			async : false,
+			data : param,
+			//dataType : 'json',
+			complete: function( xhr, textStatus ){
+				//응답처리
+			},
+			error : function( xhr, textStatus, erroThrown ){
+				alert( '처리 중 오류가 발생되었습니다. '+textStatus );
+			},
+			success : function( data, textStatus ){
+			},
+			type : 'POST',
+			url : '${cpath}/'
+		});
+	}
+
+	function dataAdd(  ){
+		handling.submit( '', 'productadd' );
+	}
+
+	function dataDel( r_prseq ){
+		handling.submit( '', 'productdel' );
+	}
+
+	function dataDown(){
+		handling.submit( '', 'productdown' );
+	}
+
+	function dataEdit( r_prseq ){
+		handling.submit( '', 'productedit' );
+	}
+
+	function dataIn(){
+		handling.submit( '', 'productin' );
+	}
+
+	function dataView( r_prseq ){
+		$( '#r_prseq' ).val( r_prseq );
+		handling.submit( '', 'productview' );
+	}
+
+	function dataList(){
+		handling.submit( '', 'productlist' );
+	}
+
+	function dataSort(){
+		handling.submit( '', 'productlist' );
+	}
+
+	function dataUp( r_prseq ){
+		handling.submit( '', 'productup' );
+	}
+
+	function formSubmit( fName, r_url ){
+		handling.submit( fName, r_url );
+	}
+
+	function pager( r_page ){
+		$('input[name="r_page"]').val( r_page );
+		handling.submit( '', '' );
+	}
+
+	function pageMove(  ){
+		handling.pageMove( r_url, param);
+	}
+
+</script>
+</head>
+
+<body>
+
+	<%@ include file="/include/jsp/header.jsp" %>
+
+	<div class="container">
+
+	<form action="productlist" id="frm" name="frm" method="post" >
+
+		<input name="r_page" type="hidden" value="${ model.r_page }" />
+		<input name="r_pagelimit" type="hidden" value="${ model.r_pagelimit }" />
+		<input name="r_rowlimit" type="hidden" value="${ model.r_rowlimit }" />
+
+		<input id="r_prseq" name="r_prseq" type="hidden" value="" />
+
+		<table class="table table-hover">
+			<caption>productList</caption>
+			<thead>
+				<tr>
+					<th>고유번호</th>
+					<th>상품카테고리</th>
+					<th>상품코드</th>
+					<th>구매사상품코드</th>
+					<th>공급사상품코드</th>
+					<th>상품명</th>
+					<th>상품가격</th>
+					<th>파일개수</th>
+					<th>공급사아이디</th>
+					<th>구매사아이디</th>
+					<th>바코드</th>
+					<th>부가세여부</th>
+					<th>적립금</th>
+					<th>규격</th>
+					<th>브랜드고유값</th>
+					<th>모델</th>
+					<th>단위</th>
+					<th>제조사</th>
+					<th>원산지</th>
+					<th>최소구매수량</th>
+					<th>재고</th>
+					<th>무게</th>
+					<th>내용</th>
+					<th>배송소요일</th>
+					<th>배송정책</th>
+					<th>상품상태</th>
+					<th>레벨</th>
+					<th>타입</th>
+					<th>사용여부</th>
+					<th>수정아이디</th>
+					<th>등록아이디</th>
+					<th>수정일</th>
+					<th>등록일</th>
+				</tr>
+			</thead>
+		<c:forEach items="${ model.productList}" var="product" varStatus="status" >
+			<tbody>
+				<tr>
+					<td><c:out value='${ product.PR_SEQ }' /></td>
+					<td><c:out value='${ product.PR_PRCSEQ }' /></td>
+					<td><c:out value='${ product.PR_CODE }' /></td>
+					<td><c:out value='${ product.PR_CODEB }' /></td>
+					<td><c:out value='${ product.PR_CODES }' /></td>
+					<td><c:out value='${ product.PR_NAME }' /></td>
+					<td><c:out value='${ product.PR_PRICE }' /></td>
+					<td><c:out value='${ product.PR_FILENUM }' /></td>
+					<td><c:out value='${ product.PR_CPIDS }' /></td>
+					<td><c:out value='${ product.PR_CPIDB }' /></td>
+					<td><c:out value='${ product.PR_BARCODE }' /></td>
+					<td><c:out value='${ product.PR_VATUSE }' /></td>
+					<td><c:out value='${ product.PR_SAVEMONEY }' /></td>
+					<td><c:out value='${ product.PR_STANDARD }' /></td>
+					<td><c:out value='${ product.PR_BRSEQ }' /></td>
+					<td><c:out value='${ product.PR_MODEL }' /></td>
+					<td><c:out value='${ product.PR_UNIT }' /></td>
+					<td><c:out value='${ product.PR_MANUFACTURE }' /></td>
+					<td><c:out value='${ product.PR_COUNTRY }' /></td>
+					<td><c:out value='${ product.PR_MINBUYEA }' /></td>
+					<td><c:out value='${ product.PR_STOCK }' /></td>
+					<td><c:out value='${ product.PR_WEIGHT }' /></td>
+					<td><c:out value='${ product.PR_CONTENT }' /></td>
+					<td><c:out value='${ product.PR_DELITERM }' /></td>
+					<td><c:out value='${ product.PR_DELIPOLICY }' /></td>
+					<td><c:out value='${ product.PR_STATUS }' /></td>
+					<td><c:out value='${ product.PR_LEVEL }' /></td>
+					<td><c:out value='${ product.PR_TYPE }' /></td>
+					<td><c:out value='${ product.PR_USE }' /></td>
+					<td><c:out value='${ product.PR_MOID }' /></td>
+					<td><c:out value='${ product.PR_INID }' /></td>
+					<td>${ fn:substring( product.PR_MODATE, 0, 16 ) }</td>
+					<td>${ fn:substring( product.PR_INDATE, 0, 16 ) }</td>
+				</tr>
+			</tbody>
+		</c:forEach>
+		</table>
+
+		<a href="#" onclick="dataAdd(  )">등록</a>
+	<div class="">
+		<%@ include file="/include/jsp/pager.jsp" %>
+	</div>
+
+	</form>
+	</div>
+
+	<%@ include file="/include/jsp/footer.jsp" %>
+
+</body>
+</html>
